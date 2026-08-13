@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MINUME XVII Check-In</title>
+    <meta name="description" content="Plataforma oficial de check-in y gestión logística para MINUME XVII — Sistema General de Logística." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">M</div>
+        <div>
+          <p class="eyebrow">Plataforma SGL</p>
+          <h1>MINUME XVII Check-In</h1>
+        </div>
+      </div>
+      <nav class="nav-actions" aria-label="Vistas principales">
+        <button class="view-button active" type="button" data-view="registro">Registro</button>
+        <button class="view-button" type="button" data-view="logistica">Staff &amp; Logística</button>
+        <button class="view-button" type="button" data-view="admin">Panel Admin</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- ============================================================ -->
+      <!-- VISTA: REGISTRO                                               -->
+      <!-- ============================================================ -->
+      <section id="registroView" class="page-shell">
+        <aside class="context-panel">
+          <p class="eyebrow">Acreditación oficial</p>
+          <h2>Registro de participantes</h2>
+          <p>
+            Complete la información requerida para generar su código de check-in y recibir los datos
+            de contacto asignados por su regional educativa.
+          </p>
+          <div class="status-stack">
+            <div>
+              <span>01</span>
+              <strong>Datos personales</strong>
+              <p>Identificación, rol y procedencia institucional.</p>
+            </div>
+            <div>
+              <span>02</span>
+              <strong>Salud y soporte</strong>
+              <p>Condición médica, alergias, tratamiento y contacto de emergencia.</p>
+            </div>
+            <div>
+              <span>03</span>
+              <strong>Hospedaje</strong>
+              <p>Habitación, compañero y líder de edificio o bloque.</p>
+            </div>
+            <div>
+              <span>04</span>
+              <strong>Confirmación</strong>
+              <p>QR, técnico regional y persona receptora cuando aplique.</p>
+            </div>
+          </div>
+        </aside>
+
+        <section class="workspace">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Formulario</p>
+              <h2>MINUME XVII Check-In</h2>
+            </div>
+            <span class="badge">Campos dinámicos por rol</span>
+          </div>
+
+          <form id="registrationForm" class="form-grid">
+            <label>
+              Grupo o rol
+              <select id="role" name="role" required>
+                <option value="">Seleccione</option>
+              </select>
+            </label>
+
+            <label class="role-detail hidden" data-role-detail="mesa">
+              Rol dentro del comité
+              <select id="committeeRole" name="committeeRole">
+                <option value="">Seleccione</option>
+              </select>
+            </label>
+
+            <label>
+              Nombre
+              <input id="firstName" name="firstName" autocomplete="given-name" required />
+            </label>
+
+            <label>
+              Apellido
+              <input id="lastName" name="lastName" autocomplete="family-name" required />
+            </label>
+
+            <label>
+              Edad
+              <input id="age" name="age" type="number" min="10" max="90" required />
+            </label>
+
+            <label>
+              Teléfono
+              <input id="phone" name="phone" inputmode="tel" autocomplete="tel" required />
+            </label>
+
+            <label class="wide">
+              Correo electrónico
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </label>
+
+            <label>
+              Regional educativa
+              <select id="regional" name="regional" required>
+                <option value="">Seleccione</option>
+              </select>
+            </label>
+
+            <label>
+              Centro educativo
+              <input id="school" name="school" required />
+            </label>
+
+            <label class="commission-field hidden">
+              Comisión
+              <select id="commission" name="commission">
+                <option value="">Seleccione</option>
+              </select>
+            </label>
+
+            <label class="delegate-field hidden">
+              Asignación o país
+              <input id="country" name="country" placeholder="Solo para delegados nacionales" />
+            </label>
+
+            <label class="secretariat-field hidden">
+              Subsecretaría o área
+              <input id="area" name="area" placeholder="Solo para secretarías y subsecretarías" />
+            </label>
+
+            <label class="wide">
+              Diagnóstico o condición médica
+              <select id="medicalCondition" name="medicalCondition" required>
+                <option value="">Seleccione</option>
+                <option value="Ninguna">Ninguna</option>
+                <option value="Asma">Asma</option>
+                <option value="Diabetes">Diabetes</option>
+                <option value="Hipertensión">Hipertensión</option>
+                <option value="Epilepsia">Epilepsia</option>
+                <option value="Otra">Otra</option>
+              </select>
+            </label>
+
+            <label class="medical-detail wide hidden">
+              Especifique la condición médica
+              <textarea id="medicalDetail" name="medicalDetail" rows="3"></textarea>
+            </label>
+
+            <label class="wide">
+              Alergias
+              <textarea id="allergies" name="allergies" rows="3" placeholder="Indique alergias conocidas o escriba Ninguna" required></textarea>
+            </label>
+
+            <label class="wide">
+              Tratamiento para la condición
+              <textarea id="treatment" name="treatment" rows="3" placeholder="Indique medicamentos, dosis o escriba Ninguno" required></textarea>
+            </label>
+
+            <label>
+              Contacto de emergencia
+              <input id="emergencyName" name="emergencyName" required />
+            </label>
+
+            <label>
+              Teléfono de emergencia
+              <input id="emergencyPhone" name="emergencyPhone" inputmode="tel" required />
+            </label>
+
+            <!-- HOSPEDAJE -->
+            <div class="form-section-title wide">
+              <strong>🛏️ Hospedaje (Rooming List)</strong>
+            </div>
+
+            <label>
+              Número de habitación
+              <input id="roomNumber" name="roomNumber" placeholder="Ej: 304, B-102" required />
+            </label>
+
+            <label>
+              Compañero(a) de habitación
+              <input id="roommate" name="roommate" placeholder="Nombre completo del compañero" required />
+            </label>
+
+            <label class="wide">
+              Líder de edificio o de bloque
+              <input id="buildingLeader" name="buildingLeader" placeholder="Nombre del líder de edificio/bloque" required />
+            </label>
+
+            <!-- DOCUMENTOS -->
+            <div class="upload-card">
+              <div>
+                <strong>Foto 2x2</strong>
+                <p>Imagen frontal reciente. Se previsualiza antes de enviar.</p>
+              </div>
+              <div class="upload-row">
+                <img id="photoPreview" alt="Vista previa de la foto 2x2" />
+                <input id="photo" name="photo" type="file" accept="image/*" required />
+              </div>
+            </div>
+
+            <div class="upload-card">
+              <div>
+                <strong>Certificado médico en PDF</strong>
+                <p>Documento obligatorio para todos los roles.</p>
+              </div>
+              <input id="certificate" name="certificate" type="file" accept="application/pdf" required />
+            </div>
+
+            <div class="regional-preview wide" id="regionalPreview">
+              <span>Seleccione una regional para ver los datos asignados.</span>
+            </div>
+
+            <div class="form-actions wide">
+              <button type="reset" class="secondary-button">Limpiar</button>
+              <button type="submit" class="primary-button">Registrar y generar QR</button>
+            </div>
+          </form>
+        </section>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- VISTA: LOGÍSTICA Y STAFF                                      -->
+      <!-- ============================================================ -->
+      <section id="logisticaView" class="page-shell hidden">
+        <aside class="context-panel logistica-context">
+          <p class="eyebrow">Operaciones</p>
+          <h2>Logística &amp; Staff</h2>
+          <p>
+            Centro de operaciones del evento. Gestione salones, tareas por fases y el directorio de voluntarios staff.
+          </p>
+
+          <div class="roles-functions">
+            <h3>Áreas de voluntariado</h3>
+            <div class="role-badge-list">
+              <span class="role-tag active" data-role-duty="Logística">📦 Logística</span>
+              <span class="role-tag" data-role-duty="Protocolo">🎖️ Protocolo</span>
+              <span class="role-tag" data-role-duty="Soporte Técnico">💻 Soporte</span>
+              <span class="role-tag" data-role-duty="Prensa / CLIT">📸 Prensa</span>
+              <span class="role-tag" data-role-duty="Acreditación">🪪 Acreditación</span>
+              <span class="role-tag" data-role-duty="Alimentación">🍽️ Alimentación</span>
+            </div>
+            <div id="roleDutyDetail" class="role-duty-detail">
+              <strong>Logística General:</strong> Encargados de suministros, montaje de salones y distribución.
+            </div>
+          </div>
+
+          <div class="croquis-public-link">
+            <a href="croquis.html" target="_blank" class="public-map-btn">
+               Ver Mapa Público de Salones
+            </a>
+            <p>Comparte este enlace con delegados para que vean dónde están las comisiones.</p>
+          </div>
+        </aside>
+
+        <section class="workspace">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Gestión de Evento</p>
+              <h2>Centro de Comando</h2>
+            </div>
+            <div class="logistica-tabs">
+              <button class="logistica-tab active" type="button" data-logistica-tab="croquis"> Croquis</button>
+              <button class="logistica-tab" type="button" data-logistica-tab="checklist">Checklist</button>
+              <button class="logistica-tab" type="button" data-logistica-tab="staff">Staff</button>
+            </div>
+          </div>
+
+          <!-- ======== PESTAÑA 1: CROQUIS ======== -->
+          <div id="croquisSubTab">
+            <div class="croquis-header">
+              <div class="croquis-controls">
+                <label class="floor-filter-label">
+                  <span>Filtrar por piso</span>
+                  <select id="floorFilter">
+                    <option value="Todos">Todos los pisos</option>
+                    <option value="Planta Baja"> Planta Baja</option>
+                    <option value="Piso 1"> Piso 1</option>
+                    <option value="Piso 2"> Piso 2</option>
+                  </select>
+                </label>
+                <p class="croquis-hint">Haga clic en un salón para editar la comisión, estado o tema en tiempo real.</p>
+              </div>
+              <div class="croquis-legend">
+                <span class="legend-item"><span class="legend-dot dot-active"></span>Sesión Activa</span>
+                <span class="legend-item"><span class="legend-dot dot-recess"></span>En Receso</span>
+                <span class="legend-item"><span class="legend-dot dot-closed"></span>Clausurada</span>
+                <span class="legend-item"><span class="legend-dot dot-available"></span>Disponible</span>
+              </div>
+            </div>
+
+            <div class="croquis-grid" id="hotelMap">
+              <!-- Renderizado dinámico en app.js -->
+            </div>
+
+            <!-- Editor de salón -->
+            <div id="salonEditor" class="salon-editor hidden">
+              <h3>Editar Salón: <span id="editorSalonName"></span></h3>
+              <form id="salonEditorForm" class="form-grid">
+                <input type="hidden" id="editorSalonId" />
+                <label>
+                  Comisión Asignada
+                  <select id="editorCommission" name="commission"></select>
+                </label>
+                <label>
+                  Estado de Sesión
+                  <select id="editorStatus" name="status">
+                    <option value="Sesión Activa">Sesión Activa</option>
+                    <option value="En Receso">En Receso</option>
+                    <option value="Clausurada">Clausurada</option>
+                    <option value="Disponible">Disponible</option>
+                  </select>
+                </label>
+                <label class="wide">
+                  Tema de Debate Actual
+                  <input id="editorTopic" name="topic" placeholder="Ej: Situación en Medio Oriente" />
+                </label>
+                <label class="wide">
+                  Moderador(a) / Mesa Directiva
+                  <input id="editorModerator" name="moderator" />
+                </label>
+                <div class="form-actions wide">
+                  <button type="button" id="closeSalonEditor" class="secondary-button">Cancelar</button>
+                  <button type="submit" class="primary-button">Actualizar Salón</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- ======== PESTAÑA 2: CHECKLIST ======== -->
+          <div id="checklistSubTab" class="hidden">
+            <div class="checklist-toolbar">
+              <div class="filter-group">
+                <label>
+                  Rol
+                  <select id="taskRoleFilter">
+                    <option value="Todos">Todos</option>
+                    <option value="Logística">Logística</option>
+                    <option value="Protocolo">Protocolo</option>
+                    <option value="Soporte Técnico">Soporte Técnico</option>
+                    <option value="Prensa / CLIT">Prensa / CLIT</option>
+                    <option value="Acreditación">Acreditación</option>
+                    <option value="Alimentación">Alimentación</option>
+                  </select>
+                </label>
+                <label>
+                  Fase
+                  <select id="taskPhaseFilter">
+                    <option value="Todos">Todas las fases</option>
+                    <option value="Pre-evento">🕐 Pre-evento</option>
+                    <option value="Llegada">✈️ Llegada</option>
+                    <option value="Sesiones">🏛️ Sesiones</option>
+                    <option value="Clausura">🎓 Clausura</option>
+                  </select>
+                </label>
+                <label>
+                  Estado
+                  <select id="taskStatusFilter">
+                    <option value="Todos">Todos</option>
+                    <option value="Pendiente">Pendientes</option>
+                    <option value="Completada">Completadas</option>
+                  </select>
+                </label>
+              </div>
+              <button id="resetTasksButton" class="secondary-button" type="button">Restaurar tareas base</button>
+            </div>
+
+            <div class="checklist-container">
+              <div class="checklist-section">
+                <h3>Lista de Tareas por Fase</h3>
+                <div id="checklistItems" class="checklist-items">
+                  <!-- Renderizado dinámico en app.js -->
+                </div>
+              </div>
+
+              <div class="add-task-section">
+                <h3>Agregar Nueva Tarea</h3>
+                <form id="newTaskForm" class="form-grid">
+                  <label class="wide">
+                    Descripción de la Tarea
+                    <input id="newTaskDesc" name="desc" placeholder="Ej: Llevar carpetas al salón Coral" required />
+                  </label>
+                  <label>
+                    Rol Asignado
+                    <select id="newTaskRole" name="role" required>
+                      <option value="Logística">Logística</option>
+                      <option value="Protocolo">Protocolo</option>
+                      <option value="Soporte Técnico">Soporte Técnico</option>
+                      <option value="Prensa / CLIT">Prensa / CLIT</option>
+                      <option value="Acreditación">Acreditación</option>
+                      <option value="Alimentación">Alimentación</option>
+                    </select>
+                  </label>
+                  <label>
+                    Fase
+                    <select id="newTaskPhase" name="phase" required>
+                      <option value="Pre-evento">Pre-evento</option>
+                      <option value="Llegada">Llegada</option>
+                      <option value="Sesiones">Sesiones</option>
+                      <option value="Clausura">Clausura</option>
+                    </select>
+                  </label>
+                  <label>
+                    Prioridad
+                    <select id="newTaskPriority" name="priority" required>
+                      <option value="Alta">Alta</option>
+                      <option value="Media">Media</option>
+                      <option value="Baja">Baja</option>
+                    </select>
+                  </label>
+                  <label>
+                    Responsable
+                    <input id="newTaskResponsable" name="responsable" placeholder="Nombre o cargo" />
+                  </label>
+                  <label>
+                    Fecha / Hora límite
+                    <input id="newTaskDeadline" name="deadline" placeholder="Ej: Día 1 · 8am" />
+                  </label>
+                  <button type="submit" class="primary-button wide"> Agregar Tarea</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- ======== PESTAÑA 3: DIRECTORIO DE STAFF ======== -->
+          <div id="staffSubTab" class="hidden">
+            <div class="staff-toolbar">
+              <div class="filter-group">
+                <label>
+                  Filtrar por rol
+                  <select id="staffRoleFilter">
+                    <option value="Todos">Todos los roles</option>
+                    <option value="Logística">Logística</option>
+                    <option value="Protocolo">Protocolo</option>
+                    <option value="Soporte Técnico">Soporte Técnico</option>
+                    <option value="Prensa / CLIT"> Prensa / CLIT</option>
+                    <option value="Acreditación"> Acreditación</option>
+                    <option value="Alimentación"> Alimentación</option>
+                  </select>
+                </label>
+              </div>
+              <button id="resetStaffButton" class="secondary-button" type="button">Restaurar staff base</button>
+            </div>
+
+            <div id="staffDirectoryList" class="staff-directory-list">
+              <!-- Renderizado dinámico en app.js -->
+            </div>
+
+            <div class="add-staff-section">
+              <h3>Agregar Miembro de Staff</h3>
+              <form id="addStaffForm" class="form-grid">
+                <label>
+                  Nombre completo
+                  <input name="staffName" placeholder="Nombre Apellido" required />
+                </label>
+                <label>
+                  Rol / Área
+                  <select name="staffRole" required>
+                    <option value="Logística"> Logística</option>
+                    <option value="Protocolo"> Protocolo</option>
+                    <option value="Soporte Técnico">Soporte Técnico</option>
+                    <option value="Prensa / CLIT"> Prensa / CLIT</option>
+                    <option value="Acreditación"> Acreditación</option>
+                    <option value="Alimentación">Alimentación</option>
+                  </select>
+                </label>
+                <label>
+                  Función específica
+                  <input name="staffArea" placeholder="Ej: Montaje de salones" required />
+                </label>
+                <label>
+                  Teléfono
+                  <input name="staffPhone" inputmode="tel" placeholder="809-555-0000" />
+                </label>
+                <label class="wide">
+                  Nota o cargo especial
+                  <input name="staffNote" placeholder="Ej: Coordinador de área (opcional)" />
+                </label>
+                <button type="submit" class="primary-button wide">Agregar al Staff</button>
+              </form>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- VISTA: PANEL ADMIN                                            -->
+      <!-- ============================================================ -->
+      <section id="adminView" class="page-shell hidden">
+        <aside class="context-panel admin-context">
+          <p class="eyebrow">Administración</p>
+          <h2>Control de check-in</h2>
+          <p>
+            Acceda al panel para revisar registros, aprobar o rechazar el check-in, gestionar el rooming list
+            y configurar los responsables por regional educativa.
+          </p>
+          <div id="adminSummary" class="admin-summary"></div>
+        </aside>
+
+        <section class="workspace">
+          <div id="adminLogin" class="login-panel">
+            <div>
+              <p class="eyebrow">Acceso administrativo</p>
+              <h2>Iniciar sesión</h2>
+              <p>PRUEBA</p>
+            </div>
+            <form id="adminLoginForm" class="login-form">
+              <label>
+                Usuario
+                <input id="adminUser" name="adminUser" autocomplete="username" required />
+              </label>
+              <label>
+                Contraseña
+                <input id="adminPassword" name="adminPassword" type="password" autocomplete="current-password" required />
+              </label>
+              <p class="login-hint">Usuario: admin@minume.local · Contraseña: MINUME17</p>
+              <button type="submit" class="primary-button">Entrar al panel</button>
+              <p id="loginError" class="login-error" role="alert"></p>
+            </form>
+          </div>
+
+          <div id="adminPanel" class="hidden">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Panel Admin</p>
+                <h2>Registros en tiempo local</h2>
+              </div>
+              <div class="admin-actions">
+                <span class="live-indicator">Simulación activa</span>
+                <button id="adminLogout" type="button" class="secondary-button">Cerrar sesión</button>
+              </div>
+            </div>
+
+            <div class="admin-tabs" role="tablist" aria-label="Secciones del panel administrativo">
+              <button class="admin-tab active" type="button" data-admin-tab="registrations">Registros</button>
+              <button class="admin-tab" type="button" data-admin-tab="rooming">🛏️ Rooming List</button>
+              <button class="admin-tab" type="button" data-admin-tab="directory">Directorio regional</button>
+              <button class="admin-tab" type="button" data-admin-tab="emails">Correos</button>
+            </div>
+
+            <!-- TAB: Registros -->
+            <section id="registrationsTab">
+              <div class="scan-panel">
+                <div>
+                  <p class="eyebrow">Escaneo QR</p>
+                  <h3>Validacion simulada de participante</h3>
+                  <p>Ingrese o use el codigo generado para abrir la ficha completa del registro.</p>
+                </div>
+                <form id="scanForm" class="scan-form">
+                  <label>
+                    Codigo QR
+                    <input id="scanCode" name="scanCode" placeholder="MXVII-R1-123456" />
+                  </label>
+                  <button type="submit" class="primary-button">Simular escaneo</button>
+                </form>
+                <div id="scanResult" class="scan-result hidden"></div>
+              </div>
+
+              <div class="table-toolbar">
+                <label>
+                  Filtrar por estado
+                  <select id="statusFilter">
+                    <option value="Todos">Todos</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="Aprobado">Aprobado</option>
+                    <option value="Devuelto">Devuelto</option>
+                  </select>
+                </label>
+                <button id="clearRegistrations" type="button" class="secondary-button">Limpiar registros</button>
+              </div>
+              <div id="registrationsList" class="registrations-list"></div>
+            </section>
+
+            <!-- TAB: Rooming List -->
+            <section id="roomingTab" class="hidden">
+              <div class="section-heading compact-heading">
+                <div>
+                  <p class="eyebrow">Alojamiento</p>
+                  <h2>Rooming List</h2>
+                </div>
+              </div>
+              <div class="rooming-filter">
+                <label>
+                  Buscar por líder de bloque / edificio
+                  <input id="buildingLeaderFilter" type="search" placeholder="Nombre del líder..." />
+                </label>
+              </div>
+              <div id="roomingListContent">
+                <!-- Renderizado dinámico en app.js -->
+              </div>
+            </section>
+
+            <!-- TAB: Directorio regional -->
+            <section id="directoryTab" class="hidden">
+              <div class="section-heading compact-heading">
+                <div>
+                  <p class="eyebrow">Configuración</p>
+                  <h2>Directorio de soporte</h2>
+                </div>
+                <button id="resetAdmin" type="button" class="secondary-button">Restaurar datos base</button>
+              </div>
+              <div id="regionalAdminList" class="regional-admin-list"></div>
+            </section>
+
+            <!-- TAB: Correos -->
+            <section id="emailsTab" class="hidden">
+              <div class="section-heading compact-heading">
+                <div>
+                  <p class="eyebrow">Notificaciones</p>
+                  <h2>Bandeja de correos generados</h2>
+                </div>
+                <button id="clearEmails" type="button" class="secondary-button">Limpiar bandeja</button>
+              </div>
+              <div id="emailOutbox" class="email-outbox"></div>
+            </section>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <!-- ============================================================ -->
+    <!-- DIÁLOGOS                                                       -->
+    <!-- ============================================================ -->
+    <dialog id="confirmationDialog" class="confirmation">
+      <button class="dialog-close" type="button" aria-label="Cerrar confirmación">×</button>
+      <div class="confirmation-layout">
+        <div>
+          <p class="eyebrow">Registro confirmado</p>
+          <h2 id="confirmationName"></h2>
+          <p id="confirmationMeta"></p>
+          <div class="contact-grid">
+            <div>
+              <span>Técnico regional</span>
+              <strong id="confirmationTech"></strong>
+              <p id="confirmationTechPhone"></p>
+            </div>
+            <div>
+              <span>Recepción de invitados</span>
+              <strong id="confirmationHost"></strong>
+              <p id="confirmationHostPhone"></p>
+            </div>
+          </div>
+        </div>
+        <div class="qr-card">
+          <canvas id="qrCanvas" width="180" height="180" aria-label="Código QR de check-in"></canvas>
+          <strong id="qrCodeText"></strong>
+          <button id="simulateScan" type="button" class="secondary-button">Simular escaneo</button>
+          <p id="emailSimulation" class="email-simulation"></p>
+        </div>
+      </div>
+    </dialog>
+
+    <dialog id="reviewDialog" class="review-dialog">
+      <form id="reviewForm" method="dialog">
+        <div class="section-heading compact-heading">
+          <div>
+            <p class="eyebrow">Revisión de check-in</p>
+            <h2 id="reviewTitle">Confirmar decisión</h2>
+          </div>
+          <button id="reviewClose" class="dialog-close" type="button" aria-label="Cerrar revisión">×</button>
+        </div>
+        <p id="reviewParticipant" class="review-participant"></p>
+        <label>
+          Motivo de la decisión
+          <textarea id="reviewReason" rows="4" required placeholder="Escriba el motivo que recibirá el participante por correo."></textarea>
+        </label>
+        <div class="form-actions">
+          <button id="reviewCancel" type="button" class="secondary-button">Cancelar</button>
+          <button type="submit" class="primary-button">Guardar y preparar correo</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
